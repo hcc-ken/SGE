@@ -1,0 +1,7 @@
+{
+  "name": "SimulacroExamen1Trimestre",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
