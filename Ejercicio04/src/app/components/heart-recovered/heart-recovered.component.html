@@ -1,0 +1,19 @@
+@if (heartsRecoveres(); as hearts) {
+  @if (hearts !== undefined) {
+    @if (hearts === 0) {
+      <ion-icon name="heart-outline" color="danger"></ion-icon>
+    } @else if (hearts === Math.ceil(hearts)) {
+      @for (heart of Array(hearts); track $index) {
+        <ion-icon name="heart" color="danger"></ion-icon>
+      }
+    } @else {
+      @for (heart of Array(Math.ceil(hearts)); track $index) {
+        @if ($last) {
+          <ion-icon name="heart-half" color="danger"></ion-icon>
+        } @else {
+          <ion-icon name="heart" color="danger"></ion-icon>
+        }
+      }
+    }
+  }
+}

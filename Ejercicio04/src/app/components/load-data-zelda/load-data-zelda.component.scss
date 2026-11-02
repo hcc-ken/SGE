@@ -1,0 +1,13 @@
+ion-modal {
+  --height: 70vh;
+  --background: var(--ion-color-dark);
+  border-radius: 15px;
+}
+
+ion-modal ion-content {
+  --background: var(--ion-color-medium);
+}
+
+img {
+  width: 100%;
+}

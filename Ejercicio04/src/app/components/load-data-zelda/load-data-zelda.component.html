@@ -1,0 +1,39 @@
+<ion-list>
+  @for (item of dataZeldaItems(); track item.id) {
+    <ion-item [id]="'abrir-modal-'+item.id">
+      <ion-avatar slot="start">
+        <img [src]="item.image" alt="">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.name}}</h2>
+        <p>{{item.common_locations}}</p>
+      </ion-label>
+      <ion-label slot="end">
+        @if (heartOn()) {
+          <app-heart-recovered [heartsRecoveres]="item.hearts_recovered"></app-heart-recovered>
+        } @else {
+          <app-att-def [properties]="item.properties"></app-att-def>
+        }
+      </ion-label>
+    </ion-item>
+
+    <ion-modal #modal [trigger]="'abrir-modal-'+item.id">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="dark">
+            <ion-title class="ion-text-capitalize">{{item.name}}</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="modal.dismiss()"> Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-card color="dark">
+            <img [src]="item.image" alt="">
+            <ion-card-content>{{item.description}}</ion-card-content>
+          </ion-card>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  }
+</ion-list>
