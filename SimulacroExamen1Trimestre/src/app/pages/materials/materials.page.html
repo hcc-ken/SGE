@@ -1,13 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>materials</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-header class="ion-no-border">
     <ion-toolbar>
-      <ion-title size="large">materials</ion-title>
+        <ion-avatar slot="start">
+            <img src="assets/images/AmongUs.jpg" alt="">
+            <app-menu/>
+        </ion-avatar>
+        <ion-title>Materials</ion-title>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
+<app-menu/>
+<ion-content id="materials-page">
+    <div class="ion-text-center">
+        <ion-button id="abrir-modal">
+            <ion-icon name="power"></ion-icon>
+        </ion-button>
+    </div>
+
+    <ion-modal #moda trigger="abrir-modal" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="modal.dismiss(null, 'cancel')" color="primary">
+                            Cancel
+                        </ion-button>
+                    </ion-buttons>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="modal.dismiss(null, 'aceptar')" color="primary">
+                            Aceptar
+                        </ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <div class="ion-display-flex ion-justify-content-center">
+                    <ion-button color="success" (click)="generateRandom()">
+                        Random
+                    </ion-button>
+                </div>
+                <p>
+                    <ion-text>
+
+                    </ion-text>
+                </p>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+    <ion-list>
+        @for (material of dataZeldaMaterials(); track material.id) {
+            <ion-item>
+                <ion-avatar slot="end">
+                    <img [src]="material.image" alt="">
+                </ion-avatar>
+                <ion-title>
+                    {{material.name}}
+                </ion-title>
+                <ion-label>
+                    {{ material.description }}
+                </ion-label>
+            </ion-item>
+        }
+    </ion-list>
 </ion-content>

@@ -1,16 +1,17 @@
 import {HttpClient} from "@angular/common/http";
-import {APP_ID, inject, Service} from "@angular/core";
-import {Observable} from "rxjs";
-import {APIZeldaResponse} from "../models/zelda.models";
+import {inject, Service} from "@angular/core";
+import type {Observable} from "rxjs";
+
+import {environment} from "../../environments/environment";
+import type {APIZeldaResponse} from "../models/zelda.models";
 
 @Service()
 export class ZeldaService {
     private readonly httpClient: HttpClient = inject(HttpClient);
-    private readonly urlBase = "https://api.hyrule-compendium.com/v3/compendium/category/materials/";
 
-        getMaterials(category: string): Observable<APIZeldaResponse> {
+        getMaterials(): Observable<APIZeldaResponse> {
             return this.httpClient.get<APIZeldaResponse>(
-                this.urlBase + category,
+                environment.URLBase + '/materials', //Se ha creado la variable URLBase en environment.ts
             );
         }
 }

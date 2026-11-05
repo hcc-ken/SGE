@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  URLBase: "https://api.hyrule-compendium.com/v3/compendium/category"
 };
 
 /*

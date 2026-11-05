@@ -5,23 +5,39 @@ import {inject, input, signal} from '@angular/core';
 // eslint-disable-next-line import-x/no-duplicates
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular';
+import {
+    IonAvatar,
+    IonButton, IonButtons,
+    IonContent,
+    IonHeader,
+    IonIcon,
+    IonItem, IonLabel,
+    IonList, IonMenuToggle, IonModal, IonText,
+    IonTitle,
+    IonToolbar
+} from '@ionic/angular';
+import {addIcons} from "ionicons";
+import {power} from "ionicons/icons";
 
 import type {DataZelda} from "../../models/zelda.models";
 import {ZeldaService} from "../../services/zelda.service";
+import {MenuComponent} from "../../components/menu/menu.component";
+
 
 @Component({
   selector: 'app-materials',
   templateUrl: './materials.page.html',
   styleUrls: ['./materials.page.scss'],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonAvatar, IonButton, IonIcon, IonList, IonItem, IonLabel, IonMenuToggle, MenuComponent, IonModal, IonButtons, IonText],
 })
 export class MaterialsPage implements OnInit {
   category = input.required<string>();
   private readonly zeldaService: ZeldaService = inject(ZeldaService);
   dataZeldaMaterials = signal<DataZelda[]>([]);
 
-  constructor() {}
+  constructor() {
+      addIcons({power})
+  }
 
   ngOnInit(): void {
     this.loadData();
@@ -29,7 +45,7 @@ export class MaterialsPage implements OnInit {
 
 
   private loadData() {
-    this.zeldaService.getMaterials(this.category()).subscribe(
+    this.zeldaService.getMaterials().subscribe(
         {
           next: res => {
             this.dataZeldaMaterials.set(res.data);
@@ -40,5 +56,9 @@ export class MaterialsPage implements OnInit {
         }
     );
   }
+
+    protected generateRandom() {
+        this.randomNumber.set(Match.floor(Math.random() * this.dataZeldaMaterials().length))
+    }
 }
 
