@@ -1,9 +1,10 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-        <ion-avatar slot="start">
-            <img src="assets/images/AmongUs.jpg" alt="">
-            <app-menu/>
-        </ion-avatar>
+        <ion-menu-toggle slot="start" menu="menu-among-us">
+            <ion-avatar>
+                <img src="assets/images/AmongUs.jpg" alt="">
+            </ion-avatar>
+        </ion-menu-toggle>
         <ion-title>Materials</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -15,7 +16,7 @@
         </ion-button>
     </div>
 
-    <ion-modal #moda trigger="abrir-modal" (willDismiss)="onWillDismiss($event)">
+    <ion-modal #modal trigger="abrir-modal" (willDismiss)="onWillDismiss($event)">
         <ng-template>
             <ion-header>
                 <ion-toolbar>
@@ -38,8 +39,8 @@
                     </ion-button>
                 </div>
                 <p>
-                    <ion-text>
-
+                    <ion-text color="success" class="ion-text-center">
+                        {{randomNumber()}}
                     </ion-text>
                 </p>
             </ion-content>
@@ -52,11 +53,9 @@
                 <ion-avatar slot="end">
                     <img [src]="material.image" alt="">
                 </ion-avatar>
-                <ion-title>
-                    {{material.name}}
-                </ion-title>
                 <ion-label>
-                    {{ material.description }}
+                    <h2 class="ion-text-capitalize">{{material.name}}</h2>
+                    <p>{{ material.description }}</p>
                 </ion-label>
             </ion-item>
         }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit} from '@angular/core';
+import type {OnInit} from '@angular/core';
 // eslint-disable-next-line import-x/no-duplicates
 import {inject, input, signal} from '@angular/core';
 // eslint-disable-next-line import-x/no-duplicates
@@ -19,9 +19,9 @@ import {
 import {addIcons} from "ionicons";
 import {power} from "ionicons/icons";
 
+import {MenuComponent} from "../../components/menu/menu.component";
 import type {DataZelda} from "../../models/zelda.models";
 import {ZeldaService} from "../../services/zelda.service";
-import {MenuComponent} from "../../components/menu/menu.component";
 
 
 @Component({
@@ -34,6 +34,7 @@ export class MaterialsPage implements OnInit {
   category = input.required<string>();
   private readonly zeldaService: ZeldaService = inject(ZeldaService);
   dataZeldaMaterials = signal<DataZelda[]>([]);
+  protected readonly randomNumber = signal<number>(0);
 
   constructor() {
       addIcons({power})
@@ -58,7 +59,11 @@ export class MaterialsPage implements OnInit {
   }
 
     protected generateRandom() {
-        this.randomNumber.set(Match.floor(Math.random() * this.dataZeldaMaterials().length))
+        this.randomNumber.set(Math.floor(Math.random() * this.dataZeldaMaterials().length));
+    }
+
+    protected onWillDismiss($event: any) {
+        
     }
 }
 
