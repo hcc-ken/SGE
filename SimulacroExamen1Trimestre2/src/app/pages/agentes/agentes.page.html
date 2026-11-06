@@ -1,0 +1,26 @@
+<ion-header class="ion-padding">
+  <div class="ion-display-flex ion-justify-content-center">
+    <ion-title>
+      Valorant
+    </ion-title>
+    <ion-avatar class="ion-float-right">
+      <img src="assets/images/killjoy.webp" alt="...">
+    </ion-avatar>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    @for (material of dataAgentMaterials(); track material.uuid) {
+      <ion-item>
+        <ion-avatar slot="end">
+          <img [src]="material.displayIcon" alt="...">
+        </ion-avatar>
+        <ion-label>
+          <h2 class="ion-text-capitalize">{{material.displayName}}</h2>
+          <p>{{material.description}}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
