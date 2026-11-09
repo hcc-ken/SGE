@@ -3,3 +3,12 @@ p {
   overflow: hidden;
   white-space: nowrap;
 }
+
+.otro {
+  overflow: visible;
+  white-space: normal;
+}
+
+.fondo {
+  background: transparent;
+}

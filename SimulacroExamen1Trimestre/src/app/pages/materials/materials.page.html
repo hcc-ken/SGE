@@ -16,7 +16,7 @@
         </ion-button>
     </div>
 
-    <ion-modal #modal trigger="abrir-modal" (willDismiss)="onWillDismiss($event)">
+    <ion-modal #modal trigger="abrir-modal" (willDismiss)="onWillDismiss($event)"> <!-- Aqui está la modal. Es como una ventana aparte que poppea -->
         <ng-template>
             <ion-header>
                 <ion-toolbar>
@@ -25,7 +25,7 @@
                             Cancel
                         </ion-button>
                     </ion-buttons>
-                    <ion-buttons slot="start">
+                    <ion-buttons slot="end">
                         <ion-button (click)="modal.dismiss(null, 'aceptar')" color="primary">
                             Aceptar
                         </ion-button>
@@ -38,7 +38,7 @@
                         Random
                     </ion-button>
                 </div>
-                <p>
+                <p class="ion-text-center">
                     <ion-text color="success" class="ion-text-center">
                         {{randomNumber()}}
                     </ion-text>
@@ -60,4 +60,9 @@
             </ion-item>
         }
     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)"> <!-- -->
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loading-text="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

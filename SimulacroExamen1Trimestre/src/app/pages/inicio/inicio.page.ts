@@ -12,13 +12,14 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonImg, IonCardContent, IonCardHeader, IonCardTitle, IonLabel, IonButton],
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonImg, IonCardContent, IonCardHeader, IonCardTitle, IonLabel, IonButton, RouterLink],
 })
 export class InicioPage implements OnInit {
   slides: { img: string; desc: string; color: string }[] = [

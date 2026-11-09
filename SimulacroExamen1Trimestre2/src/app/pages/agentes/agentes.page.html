@@ -3,24 +3,59 @@
     <ion-title>
       Valorant
     </ion-title>
-    <ion-avatar class="ion-float-right">
+    <ion-avatar class="ion-float-right" id="abrir-modal"> <!-- estamos dando una id para que al abrir modal, sea aqui-->
       <img src="assets/images/killjoy.webp" alt="...">
     </ion-avatar>
   </div>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    @for (material of dataAgentMaterials(); track material.uuid) {
-      <ion-item>
-        <ion-avatar slot="end">
-          <img [src]="material.displayIcon" alt="...">
-        </ion-avatar>
-        <ion-label>
-          <h2 class="ion-text-capitalize">{{material.displayName}}</h2>
-          <p>{{material.description}}</p>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
+  @for (material of dataAgentMaterials(); track material.uuid; let i = $index) {
+    <ion-item>
+      <ion-avatar slot="end">
+        <img [src]="material.displayIcon" alt="...">
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-capitalize">{{ material.displayName }}</h2>
+        <p>{{ material.description }}</p>
+      </ion-label>
+    </ion-item>
+  }
 </ion-content>
+
+<ion-list>
+  <ion-modal #modal trigger="abrir-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-card> <!-- para que los contenidos esten ordenados. -->
+          <img [src]="dataAgentMaterials()[17].fullPortrait" alt="once"> <!--dataAgentMaterials viene del array de TS. Pillamos el numero 17 especifico -->
+        </ion-card>
+        <ion-card>
+          <ion-title>
+            {{ dataAgentMaterials()[17].displayName }}
+          </ion-title>
+        </ion-card>
+        <ion-card>
+          <p class="otro">
+            {{ dataAgentMaterials()[17].description }}
+          </p>
+        </ion-card>
+      </ion-content>
+
+      <ion-footer>
+        <ion-toolbar class="">
+          <ion-buttons slot="start">
+            <ion-button (click)="modal.dismiss (null, 'cancel')">
+              Cancel
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss (null, 'cancel')">
+              Aceptar
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+</ion-list>
